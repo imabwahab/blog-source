@@ -4,19 +4,12 @@ import { FiSearch } from "react-icons/fi";
 import { assets } from "../assets/assets";
 function Header() {
   return (
-    <div className="relative mt-8 mx-8 sm:mx-16 xl:mx-24 overflow-hidden rounded-3xl">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-white/60 to-black/10" />
-
-      {/* Background image */}
-      <img
-        src={assets.gradientBackground}
-        alt="background img"
-        className="absolute inset-0 w-full h-full object-cover -z-10 opacity-20"
-      />
+    <div className="relative mt-8 overflow-hidden rounded-3xl">
+      <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-300 via-white/60 to-white/60" />
 
       <div className="relative min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-3 py-1 ring-1 ring-primary/15">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-3 py-1 ring-1 ring-primary/15 border">
             <span className="text-xs font-medium">
               New: AI feature integrated
             </span>
