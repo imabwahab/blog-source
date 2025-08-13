@@ -14,7 +14,7 @@ const Footer = () => {
             alt="Logo"
             className="h-8 w-auto"
           />
-          <p className="text-sm">
+          <p className="text-sm pt-3">
             Bringing you quality content and ideas every week.
           </p>
         </div>
@@ -50,19 +50,24 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Categories</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="/category/design" className="hover:text-white">
-                Design
-              </a>
-            </li>
-            <li>
-              <a href="/category/tech" className="hover:text-white">
-                Tech
-              </a>
-            </li>
-            <li>
-              <a href="/category/lifestyle" className="hover:text-white">
+              <Link to="/lifestyle" className="hover:text-gray-400">
                 Lifestyle
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link to="/technology" className="hover:text-gray-400">
+                Technology
+              </Link>
+            </li>
+            <li>
+              <Link to="/startup" className="hover:text-gray-400">
+                Startup
+              </Link>
+            </li>
+            <li>
+              <Link to="/finance" className="hover:text-gray-400 transition">
+                Finance
+              </Link>
             </li>
           </ul>
         </div>
@@ -71,16 +76,16 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gray-500">
+            <a href="#" className="hover:text-gray-600 transition">
               <FaXTwitter />
             </a>
-            <a href="#" className="hover:text-gray-500">
+            <a href="#" className="hover:text-gray-600">
               <FaFacebookF />
             </a>
-            <a href="#" className="hover:text-gray-500">
+            <a href="#" className="hover:text-gray-600">
               <FaInstagram />
             </a>
-            <a href="#" className="hover:text-gray-500">
+            <a href="#" className="hover:text-gray-600">
               <FaTelegram />
             </a>
           </div>

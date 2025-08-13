@@ -1,11 +1,13 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/footer";
 
 function Blog() {
   return (
     <div>
       <Navbar />
-      Blog
+      blog
+      <Footer />
     </div>
   );
 }
