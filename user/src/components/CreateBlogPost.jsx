@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BiImageAdd } from "react-icons/bi";
 
 const CreateBlogPost = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -108,13 +109,14 @@ const CreateBlogPost = ({ onSubmit }) => {
 
         {/* Image Upload */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Cover Image</label>
+          <label className=" text-sm font-medium flex items-center text-gray-700"><BiImageAdd /> Cover Image </label>
+          
           <input
             type="file"
             name="image"
             accept="image/*"
             onChange={handleChange}
-            className="mt-1 block w-full text-sm text-gray-500"
+            className="mt-1 block border w-full text-sm text-gray-500"
           />
           {formData.imagePreview && (
             <img

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+import NewsletterSignup from "../components/NewsLetterSignup";
 
 const About = () => {
   return (
@@ -102,6 +103,7 @@ const About = () => {
           </div>
         </section> */}
       </div>
+      <NewsletterSignup />
       <Footer />
     </>
   );

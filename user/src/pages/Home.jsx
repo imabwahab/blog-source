@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import BlogList from "../components/BlogList";
 import Cards from "../components/Cards";
 import Footer from "../components/footer";
+import NewsletterSignup from "../components/NewsLetterSignup";
 
 function Home() {
   const [activeTag, setActiveTag] = useState("All");
@@ -20,6 +21,7 @@ function Home() {
         <Header />
         <BlogList activeTag={activeTag} HandleActiveTag={HandleActiveTag} />
         <Cards activeTag={activeTag} />
+        <NewsletterSignup />
       </div>
       <Footer />
     </div>

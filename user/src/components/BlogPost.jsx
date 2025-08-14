@@ -1,6 +1,6 @@
 const BlogPost = ({ blog }) => {
   return (
-    <div className="bg-white min-h-screen text-gray-800 px-20 pt-10  font-sans">
+    <div className="bg-white min-h-screen text-gray-800 px-10 sm:px-20 pt-10  font-sans">
       {/* Header / Hero Section */}
       <div className="relative w-full h-[60vh] sm:h-[70vh] overflow-hidden">
         <img

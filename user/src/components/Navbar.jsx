@@ -9,11 +9,11 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center px-6 py-2 sm:py-3 bg-white sticky top-0 z-10 shadow">
       {/* Logo and Brand */}
-        <img onClick={()=> navigate('/')} src={assets.logo} alt="Logo" className="h-8 w-auto" />
+        <img onClick={()=> navigate('/')} src={assets.logo} alt="Logo" className="h-6 w-auto" />
 
       {/* Login Button */}
       <div>
-        <button onClick={()=> navigate('/login')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
+        <button onClick={()=> navigate('/login')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
           Login
           <FaArrowRight className="text-sm" />
         </button>

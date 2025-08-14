@@ -5,7 +5,7 @@ import { assets } from "../assets/assets";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-800 py-10 mt-16">
+    <footer className="bg-white border-t-1 text-gray-800 py-10 mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {/* Company Info */}
         <div>
@@ -28,12 +28,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/blog" className="hover:text-gray-600 hover:underline transition duration-400">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link to="/create" className="hover:text-gray-600 hover:underline transition duration-400">
+              <Link to="/add-blog" className="hover:text-gray-600 hover:underline transition duration-400">
                 CreateBlog
               </Link>
             </li>

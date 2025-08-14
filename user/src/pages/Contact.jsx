@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+import NewsletterSignup from "../components/NewsLetterSignup";
 
 const Contact = () => {
   return (
@@ -15,8 +16,9 @@ const Contact = () => {
         </div>
       </section>
 
+      <NewsletterSignup />
       {/* Contact Form & Info */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 mt-10  bg-gray-100">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div>
