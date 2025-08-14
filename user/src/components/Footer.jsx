@@ -23,22 +23,27 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/" className="hover:text-gray-400">
+              <Link to="/" className="hover:text-gray-600 hover:underline transition duration-400">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/about" className="hover:text-gray-400">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" className="hover:text-gray-400">
+              <Link to="/blog" className="hover:text-gray-600 hover:underline transition duration-400">
                 Blog
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-gray-400">
+              <Link to="/create" className="hover:text-gray-600 hover:underline transition duration-400">
+                CreateBlog
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:text-gray-600 hover:underline transition duration-400">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-gray-600 hover:underline transition duration-400">
                 Contact
               </Link>
             </li>
@@ -50,22 +55,22 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Categories</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/lifestyle" className="hover:text-gray-400">
+              <Link to="/lifestyle" className="hover:text-gray-600 hover:underline transition duration-400">
                 Lifestyle
               </Link>
             </li>
             <li>
-              <Link to="/technology" className="hover:text-gray-400">
+              <Link to="/technology" className="hover:text-gray-600 hover:underline transition duration-400">
                 Technology
               </Link>
             </li>
             <li>
-              <Link to="/startup" className="hover:text-gray-400">
+              <Link to="/startup" className="hover:text-gray-600 hover:underline transition duration-400">
                 Startup
               </Link>
             </li>
             <li>
-              <Link to="/finance" className="hover:text-gray-400 transition">
+              <Link to="/finance" className="hover:text-gray-600 hover:underline transition duration-400">
                 Finance
               </Link>
             </li>
@@ -76,7 +81,7 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gray-600 transition">
+            <a href="#" className="hover:text-gray-600 transition duration-400">
               <FaXTwitter />
             </a>
             <a href="#" className="hover:text-gray-600">
@@ -94,7 +99,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} YourCompany. All rights reserved.
+        © {new Date().getFullYear()} Quickblog . All rights reserved.
       </div>
     </footer>
   );

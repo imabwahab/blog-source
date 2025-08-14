@@ -13,7 +13,7 @@ const Navbar = () => {
 
       {/* Login Button */}
       <div>
-        <button onClick={()=> navigate('/admin')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
+        <button onClick={()=> navigate('/login')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
           Login
           <FaArrowRight className="text-sm" />
         </button>

@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function BlogCard({ image, title, subtitle, tag }) {
+function BlogCard({ image, title, subtitle, tag, id }) {
+  const navigate = useNavigate();
   return (
-    <div className="max-w-[300px] rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300">
+    <div className="max-w-[300px] rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300" onClick={()=> navigate(`/blog/${id}`)}>
       {/* Image */}
       <img
         src={image}

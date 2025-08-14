@@ -5,6 +5,9 @@ import "./App.css";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import BlogEditor from "./pages/BlogEditor";
+import BlogPost from './components/BlogPost'
+import Login from "./pages/Login";
 function App() {
   return (
     <div>
@@ -14,6 +17,9 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/create" element={<BlogEditor />} />
+        <Route path="/login" element={<Login />} />
+
       </Routes>
     </div>
   );

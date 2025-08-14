@@ -10,6 +10,7 @@ function Cards({ activeTag }) {
           return (
             <BlogCard
               key={item._id}
+              id={item._id}
               image={item.image}
               title={item.title}
               subtitle={item.subTitle}
