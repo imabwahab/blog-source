@@ -1,15 +1,14 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { FiHome, FiPlus, FiList, FiMessageCircle } from 'react-icons/fi';
 
 function SideBar() {
   const location = useLocation();
 
   const links = [
-    { name: 'Dashboard', to: '/dashboard', icon: <FiHome /> },
-    { name: 'Add Blogs', to: '/add-blog', icon: <FiPlus /> },
-    { name: 'Blog Lists', to: '/blogs', icon: <FiList /> },
-    { name: 'Comments', to: '/comments', icon: <FiMessageCircle /> },
+    { name: 'Dashboard', to: '/admin', icon: <FiHome /> },
+    { name: 'Add Blogs', to: '/admin/add-blog', icon: <FiPlus /> },
+    { name: 'Blog Lists', to: '/admin/blog-list', icon: <FiList /> },
+    { name: 'Comments', to: '/admin/comments', icon: <FiMessageCircle /> },
   ];
 
   return (
@@ -18,7 +17,7 @@ function SideBar() {
       <ul className="space-y-4">
         {links.map((link) => (
           <li key={link.name}>
-            <Link
+            <NavLink
               to={link.to}
               className={`flex items-center gap-3 px-6 py-2 transition 
                 ${location.pathname === link.to
@@ -28,7 +27,7 @@ function SideBar() {
             >
               <span className="text-xl">{link.icon}</span>
               <span className="text-md font-medium hidden sm:block">{link.name}</span>
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>

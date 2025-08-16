@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import BlogPost from "../components/BlogPost";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+import BlogPost from "../components/blogs/BlogPost";
 import { blog_data, comments_data } from "../assets/assets";
-import CommentList from "../components/CommentList";
-import CommentForm from "../components/CommentForm";
+import CommentList from "../components/blogs/CommentList";
+import CommentForm from "../components/blogs/CommentForm";
 
 function Blog() {
   const { id } = useParams();

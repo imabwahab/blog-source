@@ -8,9 +8,7 @@ import blog_pic_7 from "./blog_pic_7.png";
 import blog_pic_8 from "./blog_pic_8.png";
 import blog_pic_9 from "./blog_pic_9.png";
 import blog_pic_10 from "./blog_pic_10.png";
-import facebook_icon from "./facebook_icon.svg";
 import googleplus_icon from "./googleplus_icon.svg";
-import twitter_icon from "./twitter_icon.svg";
 import logo from "./logo.svg";
 import arrow from "./arrow.svg";
 import logo_light from "./logo_light.svg";
@@ -27,15 +25,11 @@ import star_icon from "./star_icon.svg";
 import cross_icon from "./cross_icon.svg";
 import home_icon from "./home_icon.svg";
 import gradientBackground from "./gradientBackground.png";
-import dashboard_icon_1 from "./dashboard_icon_1.svg";
-import dashboard_icon_2 from "./dashboard_icon_2.svg";
-import dashboard_icon_3 from "./dashboard_icon_3.svg";
-import dashboard_icon_4 from "./dashboard_icon_4.svg";
 
+import { FaXTwitter, FaTelegram } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 export const assets = {
-  facebook_icon,
   googleplus_icon,
-  twitter_icon,
   logo,
   arrow,
   logo_light,
@@ -52,11 +46,8 @@ export const assets = {
   gradientBackground,
   list_icon,
   cross_icon,
-  dashboard_icon_1,
-  dashboard_icon_2,
-  dashboard_icon_3,
-  dashboard_icon_4,
 };
+
 export const blogCategories = [
   "All",
   "Technology",
@@ -198,7 +189,6 @@ export const blog_data = [
   },
 ];
 
-
 export const comments_data = [
   {
     _id: "6811ed9e7836a82ba747cb25",
@@ -260,23 +250,41 @@ export const dashboard_data = {
   recentBlogs: blog_data.slice(0, 5),
 };
 
-export const footer_data = [
-  {
-    title: "Quick Links",
-    links: ["Home", "Best Sellers", "Offers & Deals", "Contact Us", "FAQs"],
+import { IoLogOutOutline, IoLogInOutline } from "react-icons/io5";
+export const navbar_data = {
+  login: {
+    name: 'login',
+    icon: IoLogInOutline
   },
-  {
-    title: "Need Help?",
-    links: [
-      "Delivery Information",
-      "Return & Refund Policy",
-      "Payment Methods",
-      "Track your Order",
-      "Contact Us",
-    ],
-  },
-  {
-    title: "Follow Us",
-    links: ["Instagram", "Twitter", "Facebook", "YouTube"],
-  },
+  logout: {
+    name: 'logout',
+    icon: IoLogOutOutline
+  }
+}
+export const footer_quickLinks = [
+  { name: "Home", path: "/" },
+  { name: "Create Blog", path: "/admin/add-blog" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
+
+export const footer_categories = [
+  { name: "Lifestyle", path: "/lifestyle" },
+  { name: "Technology", path: "/technology" },
+  { name: "Startup", path: "/startup" },
+  { name: "Finance", path: "/finance" },
+];
+
+export const footer_admin_routes = [
+  { name: "Dashboarad", path: "/admin" },
+  { name: "Add Blogs", path: "/admin/add-blog" },
+  { name: "Blog Lists", path: "/admin/blog-list" },
+  { name: "comments", path: "/admin/comments" }
+];
+
+export const footer_socialLinks = [
+  { icon: FaXTwitter, href: "#" },
+  { icon: FaFacebookF, href: "#" },
+  { icon: FaInstagram, href: "#" },
+  { icon: FaTelegram, href: "#" },
 ];

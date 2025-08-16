@@ -1,5 +1,5 @@
-import { blogCategories } from "../assets/assets";
-function BlogList({ activeTag, HandleActiveTag }) {
+import { blogCategories } from "../../assets/assets";
+function BlogTagsList({ activeTag, HandleActiveTag }) {
   return (
     <div className="w-full py-6">
       <ul className="flex flex-wrap justify-center gap-4">
@@ -23,4 +23,4 @@ function BlogList({ activeTag, HandleActiveTag }) {
   );
 }
 
-export default BlogList;
+export default BlogTagsList;

@@ -1,5 +1,5 @@
-import BlogCard from "../components/BlogCard";
-import { blog_data } from "../assets/assets";
+import BlogCard from "./BlogCard";
+import { blog_data } from "../../assets/assets";
 
 function Cards({ activeTag }) {
   return (

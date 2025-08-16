@@ -23,7 +23,7 @@ const CommentForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className=" shadow-md rounded-lg px-10 py-10 sm:mx-50 mt-10 mx-10  bg-white">
+    <div className=" shadow-md rounded-lg px-5 sm:px-10 py-10 sm:mx-50 mt-10 mx-6  bg-white">
       <h3 className="text-xl font-semibold text-gray-800 mb-4">Leave a Comment</h3>
 
       <form onSubmit={handleSubmit} className="space-y-4">

@@ -1,7 +1,7 @@
 
 function NewsletterSignup() {
   return (
-    <section className=" py-12 px-4 mt-10 md:px-8 bg-gray-100">
+    <section className=" py-12 px-4 mt-10 md:px-8 ">
       <div className="max-w-2xl mx-auto text-center bg-white/80 shadow-lg rounded-lg p-8">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
           Don’t Miss Any Update

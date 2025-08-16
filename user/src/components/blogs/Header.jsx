@@ -1,7 +1,6 @@
-import React from "react";
 import { BiSolidStarHalf } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
-import { assets } from "../assets/assets";
+
 function Header() {
   return (
     <div className="relative mt-8 overflow-hidden rounded-3xl">

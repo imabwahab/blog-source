@@ -45,7 +45,7 @@ const CreateBlogPost = ({ onSubmit }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto mt-10">
+    <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-4 sm:mx-auto ">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">Create New Blog Post</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">

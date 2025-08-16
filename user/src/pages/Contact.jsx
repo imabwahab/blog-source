@@ -1,7 +1,6 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
-import NewsletterSignup from "../components/NewsLetterSignup";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+import NewsletterSignup from "../components/blogs/NewsLetterSignup";
 
 const Contact = () => {
   return (
