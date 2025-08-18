@@ -19,18 +19,19 @@ const AdminComments = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">Manage Comments</h2>
+    <div className="p-4 sm:p-6">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4">Manage Comments</h2>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200">
+      {/* Responsive wrapper */}
+      <div className="w-full overflow-x-auto">
+        <table className="min-w-full sm:min-w-full bg-white border border-gray-200">
           <thead className="bg-gray-100">
             <tr className="text-left text-sm">
-              <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2 hidden sm:table-cell">Name</th>
               <th className="px-4 py-2">Comment</th>
-              <th className="px-4 py-2">Blog</th>
-              <th className="px-4 py-2">Date</th>
-              <th className="px-4 py-2">Status</th>
+              <th className="px-4 py-2 hidden md:table-cell">Blog</th>
+              <th className="px-4 py-2 hidden lg:table-cell">Date</th>
+              <th className="px-4 py-2 hidden md:table-cell">Status</th>
               <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
@@ -38,9 +39,13 @@ const AdminComments = () => {
           <tbody>
             {comments.map((comment) => (
               <tr key={comment._id} className="border-t text-sm">
-                <td className="px-4 py-2">{comment.name}</td>
-                <td className="px-4 py-2 max-w-xs truncate">{comment.content}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 bg-red-400 whitespace-nowrap hidden sm:table-cell" >
+                  {comment.name}
+                </td>
+                <td className="px-4 py-2 max-w-[150px] sm:max-w-[180px] xl:max-w-[400px] truncate bg-amber-500">
+                  {comment.content}
+                </td>
+                <td className="px-4 py-2 bg-green-400 hidden md:table-cell">
                   <Link
                     to={`/blog/${comment.blog._id}`}
                     className="text-blue-600 hover:underline"
@@ -48,10 +53,11 @@ const AdminComments = () => {
                     {comment.blog.title}
                   </Link>
                 </td>
-                <td className="px-4 py-2">
-                  {(new Date(comment.createdAt), "dd MMM yyyy")}
+                <td className="px-4 py-2 bg-blue-400 hidden lg:table-cell whitespace-nowrap">
+                  {new Date(comment.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-2">
+
+                <td className="px-4 py-2 bg-gray-400 hidden md:table-cell">
                   <span
                     className={`px-2 py-1 text-xs rounded-full ${comment.isApproved
                         ? "bg-green-100 text-green-800"
@@ -61,30 +67,36 @@ const AdminComments = () => {
                     {comment.isApproved ? "Approved" : "Pending"}
                   </span>
                 </td>
-                <td className="px-4 py-2 flex items-center space-x-3">
-                  {!comment.isApproved && (
+
+                <td className="px-4 py-2">
+                  <div className="flex items-center space-x-3">
+                    {!comment.isApproved && (
+                      <button
+                        onClick={() => handleApprove(comment._id)}
+                        className="text-green-600 hover:text-green-800"
+                        title="Approve"
+                      >
+                        <FaCheck />
+                      </button>
+                    )}
                     <button
-                      onClick={() => handleApprove(comment._id)}
-                      className="text-green-600 hover:text-green-800"
-                      title="Approve"
+                      onClick={() => handleDelete(comment._id)}
+                      className="text-red-600 hover:text-red-800"
+                      title="Delete"
                     >
-                      <FaCheck />
+                      <FaTrash />
                     </button>
-                  )}
-                  <button
-                    onClick={() => handleDelete(comment._id)}
-                    className="text-red-600 hover:text-red-800"
-                    title="Delete"
-                  >
-                    <FaTrash />
-                  </button>
+                  </div>
                 </td>
               </tr>
             ))}
 
             {comments.length === 0 && (
               <tr>
-                <td colSpan="6" className="px-4 py-8 text-center text-gray-500">
+                <td
+                  colSpan="6"
+                  className="px-4 py-8 text-center text-gray-500"
+                >
                   No comments to show.
                 </td>
               </tr>
@@ -93,6 +105,7 @@ const AdminComments = () => {
         </table>
       </div>
     </div>
+
   );
 };
 

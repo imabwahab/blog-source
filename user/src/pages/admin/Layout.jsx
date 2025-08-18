@@ -14,7 +14,7 @@ function Layout() {
       <div className="flex flex-1 pt-8">
         <SideBar />
 
-        <main className="flex-1 ml-18 sm:ml-40 ">
+        <main className="flex-1 ml-11 sm:ml-40 ">
           <Outlet />
           <Footer />
         </main>

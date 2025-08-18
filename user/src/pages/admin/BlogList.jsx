@@ -1,64 +1,34 @@
-
+import { useEffect, useState } from "react";
 import { blog_data } from "../../assets/assets";
+import BlogTableItem from "../../components/admin/BlogTableItem";
+import BlogTableHeadings from "../../components/admin/BlogTableHeadings";
 
 const AdminBlogList = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    setBlogs(blog_data);
+  }, []);
+
+  const HandleUnPublish = (id) => {
+    console.log(id);
+    const updated = blogs.filter((blog) => blog._id !== id);
+    setBlogs(updated);
+  }
+
   return (
-    <div className="p-4 sm:p-6">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-        All Blog Posts
-      </h2>
+    <div className=" py-2 px-3 md:px-6 lg:px-10">
+      <h3 className="text-xl font-semibold mb-4 p-4 text-gray-700">All Blogs</h3>
+      <div className="overflow-x-auto bg-white border border-gray-200 rounded-lg shadow-sm">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-100">
+            <BlogTableHeadings />
+          </thead>
 
-      <div className="space-y-4">
-        {blog_data.map((blog) => (
-          <div
-            key={blog._id}
-            className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition duration-300 p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-          >
-            {/* Blog Info */}
-            <div className="flex-1 space-y-1">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {blog.title}
-              </h3>
-              <div className="text-sm text-gray-600">
-                <strong>Category:</strong> {blog.category}
-              </div>
-              <div className="text-sm text-gray-500">
-                <strong>Created:</strong>{" "}
-                {new Date(blog.createdAt).toLocaleDateString()}
-              </div>
-              <div className="text-sm">
-                <span
-                  className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${
-                    blog.isPublished
-                      ? "bg-green-100 text-green-700"
-                      : "bg-gray-200 text-gray-700"
-                  }`}
-                >
-                  {blog.isPublished ? "Published" : "Unpublished"}
-                </span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-2 justify-start md:justify-end">
-              <button className="text-sm text-white bg-blue-500 hover:bg-blue-600 px-4 py-1.5 rounded transition">
-                Edit
-              </button>
-              <button className="text-sm text-white bg-red-500 hover:bg-red-600 px-4 py-1.5 rounded transition">
-                Delete
-              </button>
-              <button
-                className={`text-sm text-white px-4 py-1.5 rounded transition ${
-                  blog.isPublished
-                    ? "bg-yellow-500 hover:bg-yellow-600"
-                    : "bg-green-600 hover:bg-green-700"
-                }`}
-              >
-                {blog.isPublished ? "Unpublish" : "Publish"}
-              </button>
-            </div>
-          </div>
-        ))}
+          <tbody className="divide-y divide-x divide-gray-200">
+            <BlogTableItem blogs={blogs} HandleUnPublish={HandleUnPublish} />
+          </tbody>
+        </table>
       </div>
     </div>
   );

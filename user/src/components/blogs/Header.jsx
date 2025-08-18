@@ -6,7 +6,7 @@ function Header() {
     <div className="relative mt-8 overflow-hidden rounded-3xl">
       <div className="absolute inset-0 bg-gradient-to-b from-fuchsia-300 via-white/60 to-white/60" />
 
-      <div className="relative min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center px-4 py-12">
+      <div className="relative min-h-[60vh] h-50 sm:min-h-[80vh] flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-3 py-1 ring-1 ring-primary/15 border">
             <span className="text-xs font-medium">

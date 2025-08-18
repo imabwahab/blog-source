@@ -22,7 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
 
-        <Route path="/admin" element={true ? <Layout /> : <Login /> } >
+        <Route path="/admin/dashboard" element={true ? <Layout /> : <Login /> } >
           <Route index element={<Dashboard />} />
           <Route path="add-blog" element={<BlogEditor />} />
           <Route path="blog-list" element={<AdminBlogList />} />

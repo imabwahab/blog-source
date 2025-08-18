@@ -1,5 +1,14 @@
+import { useRef } from "react";
 
 function Login() {
+  const email = useRef('');
+  const password = useRef('');
+
+  const HandleOnSubmit = () => {
+    console.log('submitted.', email.current.value, password.current.value);
+    email.current.value = '';
+    password.current.value = '';
+  }
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-50 px-4">
       <div className="bg-white shadow-2xl border-2 border-fuchsia-200  rounded-lg w-full max-w-sm p-8 space-y-6 transition duration-300">
@@ -8,7 +17,7 @@ function Login() {
           <p className="text-gray-600 mt-1">Login to your account</p>
         </div>
 
-        <div className="space-y-6">
+        <form onSubmit={(e) => { e.preventDefault(); HandleOnSubmit(); }} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">
               Email
@@ -16,6 +25,8 @@ function Login() {
             <input
               id="email"
               type="email"
+              autoComplete="username"
+              ref={email}
               placeholder="Enter your email"
               className="w-full px-4 py-2 border-b-2 border-gray-400  focus:ring-[#5044E5] focus:border-[#5044E5] outline-none"
             />
@@ -28,6 +39,8 @@ function Login() {
             <input
               id="password"
               type="password"
+              autoComplete="current-password"
+              ref={password}
               placeholder="Enter your password"
               className="w-full px-4 py-2 border-b-2 border-gray-400   focus:ring-[#5044E5] focus:border-[#5044E5] outline-none"
             />
@@ -39,7 +52,7 @@ function Login() {
           >
             Submit
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

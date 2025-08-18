@@ -28,6 +28,13 @@ import gradientBackground from "./gradientBackground.png";
 
 import { FaXTwitter, FaTelegram } from "react-icons/fa6";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
+
+import { IoLogOutOutline, IoLogInOutline } from "react-icons/io5";
+import { RxDashboard } from "react-icons/rx";
+
+import { FiHome, FiPlus, FiList, FiMessageCircle } from 'react-icons/fi';
+
+
 export const assets = {
   googleplus_icon,
   logo,
@@ -250,20 +257,26 @@ export const dashboard_data = {
   recentBlogs: blog_data.slice(0, 5),
 };
 
-import { IoLogOutOutline, IoLogInOutline } from "react-icons/io5";
 export const navbar_data = {
   login: {
     name: 'login',
-    icon: IoLogInOutline
+    icon: IoLogInOutline,
+    to: '/login'
   },
   logout: {
     name: 'logout',
-    icon: IoLogOutOutline
+    icon: IoLogOutOutline,
+    to: '/login'
+  },
+  dashboard: {
+    name: 'dashboard',
+    icon: RxDashboard,
+    to: '/admin/dashboard'
   }
 }
+
 export const footer_quickLinks = [
   { name: "Home", path: "/" },
-  { name: "Create Blog", path: "/admin/add-blog" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
@@ -275,11 +288,12 @@ export const footer_categories = [
   { name: "Finance", path: "/finance" },
 ];
 
-export const footer_admin_routes = [
-  { name: "Dashboarad", path: "/admin" },
-  { name: "Add Blogs", path: "/admin/add-blog" },
-  { name: "Blog Lists", path: "/admin/blog-list" },
-  { name: "comments", path: "/admin/comments" }
+
+export const admin_routes = [
+  { name: 'Dashboard', path: '/admin/dashboard', icon: FiHome },
+  { name: 'Add Blogs', path: '/admin/dashboard/add-blog', icon: FiPlus },
+  { name: 'Blog Lists', path: '/admin/dashboard/blog-list', icon: FiList },
+  { name: 'Comments', path: '/admin/dashboard/comments', icon: FiMessageCircle },
 ];
 
 export const footer_socialLinks = [

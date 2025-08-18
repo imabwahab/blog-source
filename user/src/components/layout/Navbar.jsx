@@ -1,14 +1,15 @@
 import { assets, navbar_data } from "../../assets/assets";
-import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ value }) => {
   let btnName;
   let Icon;
+  let linkto;
 
   const navbarSel = (value) => {
-    btnName = value ? navbar_data.login.name : navbar_data.logout.name
-    Icon = value ? navbar_data.login.icon : navbar_data.logout.icon;
+    btnName = value ? navbar_data.dashboard.name : navbar_data.logout.name
+    Icon = value ? navbar_data.dashboard.icon : navbar_data.logout.icon;
+    linkto = value? navbar_data.dashboard.to : navbar_data.logout.to;
   }
 
   navbarSel(value);
@@ -20,9 +21,9 @@ const Navbar = ({ value }) => {
       <img onClick={() => navigate('/')} src={assets.logo} alt="Logo" className="h-6 w-auto" />
 
       <div>
-        <button onClick={() => navigate('/login')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
+        <button onClick={() => navigate(linkto)} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
           {btnName}
-          <Icon className="text-xl" />
+          <Icon className="text-lg " />
         </button>
       </div>
     </div>

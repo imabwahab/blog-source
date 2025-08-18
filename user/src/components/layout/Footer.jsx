@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { assets, footer_quickLinks, footer_socialLinks, footer_categories, footer_admin_routes } from "../../assets/assets";
+import { assets, footer_quickLinks, footer_socialLinks, footer_categories, admin_routes } from "../../assets/assets";
 
 const Footer = () => {
 
@@ -35,10 +35,11 @@ const Footer = () => {
           </ul>
         </div>
 
+{/* Admin Dashboard Links */}
          <div>
           <h3 className="text-lg font-semibold mb-4">Admin Routes</h3>
           <ul className="space-y-2 text-sm">
-            {footer_admin_routes.map((link, index) => (
+            {admin_routes.map((link, index) => (
               <li key={index}>
                 <Link
                   to={link.path}
@@ -52,7 +53,7 @@ const Footer = () => {
         </div>
 
         {/* Categories */}
-        <div>
+        {/* <div>
           <h3 className="text-lg font-semibold mb-4">Categories</h3>
           <ul className="space-y-2 text-sm">
             {footer_categories.map((category, index) => (
@@ -66,7 +67,7 @@ const Footer = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         {/* Socials */}
         <div>
