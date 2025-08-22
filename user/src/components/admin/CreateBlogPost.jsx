@@ -13,6 +13,7 @@ const CreateBlogPost = ({ onSubmit }) => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+
     if (name === 'image') {
       const file = files[0];
       setFormData((prev) => ({
@@ -28,12 +29,11 @@ const CreateBlogPost = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // You can validate or clean formData here
     if (onSubmit) {
       onSubmit(formData);
     }
 
-    // Reset (optional)
+    // Reset 
     setFormData({
       title: '',
       subTitle: '',

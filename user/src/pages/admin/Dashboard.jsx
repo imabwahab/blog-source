@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   const HandleUnPublish = (id) => {
     console.log(id);
     const updated = dashboardData.recentBlogs.filter((blog) => blog._id !== id);
-    setDashboardData({recentBlogs: updated});
+    setDashboardData({ blogs: dashboardData.blogs - 1, comments: dashboardData.comments, drafts: dashboardData.drafts, recentBlogs: updated });
   }
 
   return (

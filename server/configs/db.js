@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
@@ -6,14 +6,11 @@ const connectDB = async () => {
       console.log("MongoDB connected successfully");
     });
 
-    await mongoose.connect(`${process.env.MONGODB_URI}/quickblog`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  }
-  catch (err) {
+    await mongoose.connect(`${process.env.MONGODB_URI}/quickblog`);
+  } catch (err) {
     console.error("Database connection failed:", err.message);
   }
 };
 
 export default connectDB;
+

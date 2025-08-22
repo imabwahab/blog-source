@@ -266,7 +266,7 @@ export const navbar_data = {
   logout: {
     name: 'logout',
     icon: IoLogOutOutline,
-    to: '/login'
+    to: '/'
   },
   dashboard: {
     name: 'dashboard',
