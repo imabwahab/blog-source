@@ -11,18 +11,25 @@ import Dashboard from "./pages/admin/Dashboard";
 import AdminComments from "./pages/admin/Comments";
 import AdminBlogList from "./pages/admin/BlogList";
 import Loader from "./components/layout/Loader";
+import {Toaster} from "react-hot-toast";
+import { useAppContext } from "./components/context/AppContext";
+
+
 function App() {
+  const {token} = useAppContext();
+
   return (
     <div>
+      <Toaster />
       <Routes>
         <Route path="/loader" element={<Loader />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home  />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
 
-        <Route path="/admin/dashboard" element={true ? <Layout /> : <Login /> } >
+        <Route path="/admin/dashboard" element={token ? <Layout /> : <Login /> } >
           <Route index element={<Dashboard />} />
           <Route path="add-blog" element={<BlogEditor />} />
           <Route path="blog-list" element={<AdminBlogList />} />

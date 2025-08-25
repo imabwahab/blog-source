@@ -8,17 +8,16 @@ import BlogTagsList from "../components/blogs/BlogTagsList";
 
 function Home() {
   const [activeTag, setActiveTag] = useState("All");
+  
 
   const HandleActiveTag = (tag) => {
     console.log("tag clicked.", tag);
     setActiveTag(tag);
   };
 
-  const value = true;
-
   return (
-    <div>
-      <Navbar value={value} />
+    <div className="dark:bg-dark-midnight transition-colors duration-300">
+      <Navbar  />
       <div className="mx-8 sm:mx-16 xl:mx-24">
         <Header />
         <BlogTagsList activeTag={activeTag} HandleActiveTag={HandleActiveTag} />

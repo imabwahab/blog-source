@@ -1,14 +1,40 @@
 import { useRef } from "react";
+import { useAppContext } from "../components/context/AppContext";
+import toast from "react-hot-toast";
 
 function Login() {
+  const { axios, setToken , navigate } = useAppContext();
+
   const email = useRef('');
   const password = useRef('');
 
-  const HandleOnSubmit = () => {
-    console.log('submitted.', email.current.value, password.current.value);
-    email.current.value = '';
-    password.current.value = '';
-  }
+  const HandleOnSubmit = async () => {
+    try {
+      const { data } = await axios.post('/api/admin/login', {
+        email: email.current.value,
+        password: password.current.value
+      });
+
+      if (data.success) {
+        setToken(data.token);
+        localStorage.setItem('token', data.token);
+        axios.defaults.headers.common['Authorization'] = data.token;
+        toast.success("Login successful!");
+
+        // clear inputs after success
+        email.current.value = '';
+        password.current.value = '';
+        navigate('/')
+      } 
+      else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
+    }
+  };
+
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-50 px-4">
       <div className="bg-white shadow-2xl border-2 border-fuchsia-200  rounded-lg w-full max-w-sm p-8 space-y-6 transition duration-300">
