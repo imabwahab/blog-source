@@ -1,8 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 
 function BlogCard({ image, title, subtitle, tag, id }) {
-  const navigate = useNavigate();
+
+  const {navigate} = useAppContext();
+  
   return (
     <div className="max-w-[300px] rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300" onClick={()=> navigate(`/blog/${id}`)}>
       {/* Image */}

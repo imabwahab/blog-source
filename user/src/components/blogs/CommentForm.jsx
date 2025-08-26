@@ -3,23 +3,13 @@ import React, { useState } from 'react';
 const CommentForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!name.trim() || !comment.trim()) return;
-
-    // Optional: Pass comment data to parent
-    if (onSubmit) {
-      onSubmit({ name, content: comment, createdAt: new Date() });
-    }
-
-    setSubmitted(true);
+    onSubmit({ name, content: comment });
     setName('');
     setComment('');
-
-    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
@@ -61,10 +51,6 @@ const CommentForm = ({ onSubmit }) => {
           </button>
         </div>
 
-        {/* Confirmation Message */}
-        {submitted && (
-          <p className="text-green-600 text-sm pt-2">Thanks! Your comment was submitted.</p>
-        )}
       </form>
     </div>
   );

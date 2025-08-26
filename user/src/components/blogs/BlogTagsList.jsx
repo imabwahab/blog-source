@@ -9,7 +9,7 @@ function BlogTagsList({ activeTag, HandleActiveTag }) {
             onClick={() => HandleActiveTag(tag)}
             className={`px-4 py-2 rounded-full cursor-pointer text-sm  transition duration-200
               ${
-                activeTag === tag
+                activeTag === tag.toLocaleLowerCase()
                   ? "bg-indigo-600 text-white"
                   : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-600"
               }

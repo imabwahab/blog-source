@@ -7,7 +7,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   
   const { navigate, token } = useAppContext();
   const Icon = token ? navbar_data.dashboard.icon : navbar_data.login.icon;
-  console.log(token);
+
   return (
     <div className="flex justify-between items-center px-6 py-2 sm:py-3 bg-white sticky top-0 z-10 h-[60px] shadow">
       <img onClick={() => navigate('/')} src={assets.logo} alt="Logo" className="h-6 w-auto" />
