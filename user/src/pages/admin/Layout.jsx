@@ -1,9 +1,9 @@
 import { assets } from "../../assets/assets";
 import SideBar from "../../components/layout/SideBar";
 import Footer from "../../components/layout/Footer";
-
 import { Outlet } from "react-router-dom";
 import { useAppContext } from "../../components/context/AppContext";
+import { MdLogout } from "react-icons/md";
 
 function Layout() {
 
@@ -19,6 +19,7 @@ function Layout() {
         <div className="flex items-center gap-3">
           <button onClick={() => navigate('/')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
             Logout
+            <MdLogout />
           </button>
         </div>
       </div>

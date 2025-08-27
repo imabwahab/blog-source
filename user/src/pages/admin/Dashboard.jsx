@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { dashboard_data } from "../../assets/assets";
 import { FaBlog, FaCommentDots, FaRegFileAlt } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 
 import BlogTableItem from "../../components/admin/BlogTableItem";
 import BlogTableHeadings from "../../components/admin/BlogTableHeadings";
+import { useAppContext } from "../../components/context/AppContext";
+import toast from "react-hot-toast";
 
 const AdminDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -14,15 +15,61 @@ const AdminDashboard = () => {
     recentBlogs: []
   });
 
+  const { axios } = useAppContext();
+
+  const fetchDashboard = async () => {
+    try {
+      const { data } = await axios.get('/api/admin/dashboard');
+      if (data.success) {
+        setDashboardData(data.dashboardData);
+      }
+      else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
   useEffect(() => {
-    setDashboardData(dashboard_data);
+    fetchDashboard();
   }, []);
 
-  const HandleUnPublish = (id) => {
-    console.log(id);
-    const updated = dashboardData.recentBlogs.filter((blog) => blog._id !== id);
-    setDashboardData({ blogs: dashboardData.blogs - 1, comments: dashboardData.comments, drafts: dashboardData.drafts, recentBlogs: updated });
+  const HandlePublishStatus = async (id) => {
+    try {
+      const { data } = await axios.post('/api/blog/toggle-publish', { id: id });
+
+      if (data.success) {
+        toast.success(data.message);
+        await fetchDashboard();
+      }
+      else {
+        toast.error(data.message);
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
+
+  const HandleDelete = async (id) => {
+    const confirm = window.confirm('Are you sure you want to delete this blog?');
+    if (!confirm) return;
+    try {
+      const { data } = await axios.post('/api/blog/delete', { id });
+      if (data.success) {
+        toast.success(data.message);
+        await fetchDashboard();
+      }
+      else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
+
 
   return (
     <div className="p-4 sm:p-6">
@@ -64,7 +111,12 @@ const AdminDashboard = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            <BlogTableItem blogs={dashboardData.recentBlogs} HandleUnPublish={HandleUnPublish} />
+            <BlogTableItem
+              blogs={dashboardData.recentBlogs}
+              HandlePublishStatus={HandlePublishStatus}
+              HandleDelete={HandleDelete}
+            />
+
           </tbody>
         </table>
       </div>
