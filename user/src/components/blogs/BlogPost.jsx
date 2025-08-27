@@ -53,10 +53,10 @@ const BlogPost = ({ blog }) => {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <article
-          className="prose prose-lg prose-indigo max-w-none"
+        <div
+          className="rich-text "
           dangerouslySetInnerHTML={{ __html: blog.description }}
-        />
+        ></div>
       </div>
 
       {/* Tags / Footer */}

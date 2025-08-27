@@ -14,6 +14,8 @@ import Loader from "./components/layout/Loader";
 import { Toaster } from "react-hot-toast";
 import { useAppContext } from "./components/context/AppContext";
 import { useEffect, useState } from "react";
+import "quill/dist/quill.snow.css";
+
 
 
 function App() {

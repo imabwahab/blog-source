@@ -21,23 +21,23 @@ function Blog() {
 
   useEffect(() => {
     const loadData = async () => {
-      setLoading(true);
       await fetchBlogData();
       await fetchCommentsData();
-      setLoading(false);
     };
-
     loadData();
   }, [id]);
 
 
   const fetchBlogData = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get(`/api/blog/${id}`);
       data.success ? setBlogData(data.blog) : toast.error(data.message);
       console.log(blogData);
     } catch (error) {
       toast.error(error.message);
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -74,14 +74,18 @@ function Blog() {
     <div>
       <Navbar />
       {loading ? (
-        <Loader />
+        <div className="h-[40vh] w-full items-center justify-center flex">
+          <Loader />
+        </div>
       ) : (
-        <BlogPost blog={blogData} />
+        <>
+          <BlogPost blog={blogData} />
+          <CommentList comments={comments} />
+          <CommentForm onSubmit={addComment} />
+        </>
       )}
 
-      <CommentList comments={comments} />
 
-      <CommentForm onSubmit={addComment} />
       <Footer />
     </div>
   );

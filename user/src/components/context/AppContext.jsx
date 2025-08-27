@@ -15,18 +15,9 @@ export const AppProvider = ({ children }) => {
   const [blog, setBlogs] = useState([]);
   const [input, setInput] = useState("");
 
-  const fetchBlogs = async () => {
-    try {
-      const { data } = await axios.get('/api/blog/all');
-      console.log(data)
-      data.success ? setBlogs(data.blogs): toast.error(data.message);
-    } catch (error) {
-      toast.error(data.message);
-    }
-  }
+ 
 
   useEffect(() => {
-    fetchBlogs();
     const token = localStorage.getItem('token')
     if (token) {
       setToken(token);

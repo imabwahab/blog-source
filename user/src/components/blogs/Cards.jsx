@@ -2,19 +2,31 @@ import BlogCard from "./BlogCard";
 import { useAppContext } from "../context/AppContext";
 import Loader from "../layout/Loader";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 function Cards({ activeTag }) {
-  const { blog } = useAppContext();
 
+  const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {axios} = useAppContext();
+
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get('/api/blog/all');
+      console.log(data)
+      data.success ? setBlogs(data.blogs) : toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
 
   useEffect(() => {
-    // Simulate loading for 2 seconds
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    fetchBlogs();
   }, []);
 
   if (loading) {
@@ -25,15 +37,16 @@ function Cards({ activeTag }) {
     );
   }
 
-  if (blog.length === 0) {
+  if (!loading && blogs.length === 0) {
     return <p className="italic text-gray-500 font-mono text-center p-3 ">No blog to display</p>;
   }
 
   return (
     <div className="flex flex-wrap gap-6 justify-center">
-      {blog
-        .filter((item) => activeTag === "all" || activeTag === item.category)
+      {blogs
+        .filter((item) => activeTag === "all" || activeTag === item.category.toLowerCase())
         .map((item) => (
+          
           <BlogCard
             key={item._id}
             id={item._id}
@@ -41,7 +54,9 @@ function Cards({ activeTag }) {
             title={item.title}
             subtitle={item.subTitle}
             tag={item.category}
+            activeTag={activeTag}
           />
+          
         ))}
     </div>
   );

@@ -1,7 +1,8 @@
 import { BiImageAdd } from "react-icons/bi";
 import { useAppContext } from "../../components/context/AppContext"
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
+import Quill from "quill";
 
 const BlogEditor = () => {
   const { axios } = useAppContext();
@@ -14,8 +15,11 @@ const BlogEditor = () => {
     subTitle: '',
     category: 'Startup',
     description: '',
-    isPublished:true
+    isPublished: false
   });
+
+  const editorRef = useRef(null);
+  const quillRef = useRef(null);
 
   // ✅ Handle text/select/textarea changes
   const handleChange = (e) => {
@@ -35,9 +39,14 @@ const BlogEditor = () => {
     e.preventDefault();
     try {
       setIsAdding(true);
-
+      // ✅ Get content from Quill editor
+      const content = quillRef.current?.root.innerHTML || "";
+      const blogData = {
+        ...inputData,
+        description: content,
+      };
       const formData = new FormData();
-      formData.append('blog', JSON.stringify(inputData));
+      formData.append('blog', JSON.stringify(blogData));
       if (image) formData.append('image', image);
 
       const { data } = await axios.post('/api/blog/add', formData);
@@ -49,7 +58,8 @@ const BlogEditor = () => {
           title: '',
           subTitle: '',
           category: 'Startup',
-          description: ''
+          description: '',
+          isPublished: false
         });
         setImage(null);
         setImagePreview(null);
@@ -64,6 +74,15 @@ const BlogEditor = () => {
       setIsAdding(false);
     }
   };
+
+  const generateContent = () => {
+    console.log('generating.');
+  }
+
+  useEffect(() => {
+    // Intiate Quill only once 
+    if (!quillRef.current && editorRef.current) { quillRef.current = new Quill(editorRef.current, { theme: 'snow' }) }
+  }, []);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-4 sm:mx-auto ">
@@ -106,26 +125,28 @@ const BlogEditor = () => {
             className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">Select a category</option>
-            <option value="Lifestyle">Lifestyle</option>
-            <option value="Health">Health</option>
-            <option value="Career">Career</option>
+            <option value="Startup">Startup</option>
+            <option value="Technology">Technology</option>
+            <option value="LifeStyle">LifeStyle</option>
             <option value="Finance">Finance</option>
-            <option value="Personal Growth">Personal Growth</option>
+            <option value="Growth">Growth</option>
           </select>
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">Description (HTML allowed)</label>
-          <textarea
-            name="description"
-            rows={8}
-            value={inputData.description}
-            onChange={handleChange}
-            required
-            placeholder="<p>Write your content here...</p>"
-            className="mt-1 w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-blue-500 focus:border-blue-500 font-mono"
-          />
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Blog Description
+          </label>
+          <div className="relative">
+            <div ref={editorRef}
+              className="border border-gray-300 rounded-lg bg-white min-h-[200px]" />
+            <button
+              type="button"
+              onClick={generateContent} className="absolute bottom-2 right-2 text-xs sm:text-sm bg-black/80 text-white px-3 py-1.5 rounded-lg shadow hover:bg-black transition" >
+              Generate with AI
+            </button>
+          </div>
         </div>
 
         {/* Image Upload */}
@@ -145,6 +166,25 @@ const BlogEditor = () => {
               className="mt-4 w-full h-48 object-cover rounded-md shadow"
             />
           )}
+        </div>
+
+        {/* Publish Toggle */}
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            name="isPublished"
+            checked={inputData.isPublished}
+            onChange={(e) =>
+              setinputData((prev) => ({
+                ...prev,
+                isPublished: e.target.checked, // ✅ ensures true/false
+              }))
+            }
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <label className="ml-2 block text-sm text-gray-700">
+            Publish Immediately
+          </label>
         </div>
 
         {/* Submit Button */}

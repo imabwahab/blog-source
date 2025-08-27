@@ -7,17 +7,23 @@ import { MdLogout } from "react-icons/md";
 
 function Layout() {
 
-  const { navigate } = useAppContext();
+  const { navigate, axios, setToken } = useAppContext();
+  const logout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    axios.defaults.headers.common['Authorization'] = null;
+    navigate('/');
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
 
-    {/* Navbar */}
+      {/* Navbar */}
       <div className="flex justify-between items-center px-6 py-2 sm:py-3 bg-white sticky top-0 z-10 h-[60px] shadow">
         <img onClick={() => navigate('/')} src={assets.logo} alt="Logo" className="h-6 w-auto" />
 
         <div className="flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
+          <button onClick={() => logout()} className="flex items-center gap-2 bg-blue-600 text-white px-4 py-1.5 rounded-3xl hover:bg-blue-700 cursor-pointer transition-all duration-200">
             Logout
             <MdLogout />
           </button>

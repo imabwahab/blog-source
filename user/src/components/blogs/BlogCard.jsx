@@ -1,8 +1,10 @@
 import { useAppContext } from "../context/AppContext";
 
-function BlogCard({ image, title, subtitle, tag, id }) {
+function BlogCard({ image, title, subtitle, tag, id, activeTag }) {
 
   const {navigate} = useAppContext();
+
+  console.log(activeTag, tag)
   
   return (
     <div className="max-w-[300px] rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300" onClick={()=> navigate(`/blog/${id}`)}>
