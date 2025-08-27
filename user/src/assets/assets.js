@@ -61,6 +61,7 @@ export const blogCategories = [
   "Startup",
   "Lifestyle",
   "Finance",
+  "Growth"
 ];
 
 export const blog_data = [

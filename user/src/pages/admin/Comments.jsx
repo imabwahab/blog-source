@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { FaCheck, FaTrash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../../components/context/AppContext";
 import toast from "react-hot-toast";
 import CommentTableItems from "../../components/admin/CommentTableItems";

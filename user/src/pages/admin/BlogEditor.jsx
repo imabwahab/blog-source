@@ -1,15 +1,16 @@
-import { BiImageAdd } from "react-icons/bi";
-import { useAppContext } from "../../components/context/AppContext"
+import { useAppContext } from "../../components/context/AppContext";
 import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import Quill from "quill";
+import { parse } from "marked";
+import Loader from "../../components/layout/Loader"
 
 const BlogEditor = () => {
   const { axios } = useAppContext();
 
-  const [isAdding, setIsAdding] = useState(false);
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
+  const [isAdding, setIsAdding] = useState(false); // Publish button state
+  const [image, setImage] = useState(null); // image select state
+  const [imagePreview, setImagePreview] = useState(null); // selected image preview state
   const [inputData, setinputData] = useState({
     title: '',
     subTitle: '',
@@ -20,8 +21,9 @@ const BlogEditor = () => {
 
   const editorRef = useRef(null);
   const quillRef = useRef(null);
+  const [loading, setLoading] = useState(false); // Loader's state
 
-  // ✅ Handle text/select/textarea changes
+  //  Handle text/select/textarea changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -34,12 +36,12 @@ const BlogEditor = () => {
     }
   };
 
-  // ✅ Handle submit
+  //  Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setIsAdding(true);
-      // ✅ Get content from Quill editor
+      // Get content from Quill editor
       const content = quillRef.current?.root.innerHTML || "";
       const blogData = {
         ...inputData,
@@ -63,6 +65,7 @@ const BlogEditor = () => {
         });
         setImage(null);
         setImagePreview(null);
+        quillRef.current.root.innerHTML = null;
       }
       else {
         toast.error(data.message);
@@ -75,8 +78,25 @@ const BlogEditor = () => {
     }
   };
 
-  const generateContent = () => {
-    console.log('generating.');
+  const generateContent = async () => {
+    if (!inputData.title) {
+      return toast.error('Please enter a title');
+    }
+    try {
+      setLoading(true);
+      const { data } = await axios.post('/api/blog/generate', { prompt: inputData.title })
+      if (data.success) {
+        quillRef.current.root.innerHTML = parse(data.content);
+      }
+      else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+
+    }
   }
 
   useEffect(() => {
@@ -140,10 +160,18 @@ const BlogEditor = () => {
           </label>
           <div className="relative">
             <div ref={editorRef}
-              className="border border-gray-300 rounded-lg bg-white min-h-[200px]" />
+              className="border border-gray-300 bg-white min-h-[200px]" >
+            </div>
+
+            {loading && <div className="absolute bg-black/10 top-0 bottom-0 left-0 right-0  flex items-center justify-center h-full w-full">
+              <Loader />
+            </div>}
+
             <button
               type="button"
-              onClick={generateContent} className="absolute bottom-2 right-2 text-xs sm:text-sm bg-black/80 text-white px-3 py-1.5 rounded-lg shadow hover:bg-black transition" >
+              disabled={loading}
+              onClick={generateContent}
+              className="absolute bottom-2 right-2 text-xs sm:text-sm bg-black/80 text-white px-3 py-1.5 rounded-lg shadow hover:bg-black transition" >
               Generate with AI
             </button>
           </div>
@@ -151,7 +179,7 @@ const BlogEditor = () => {
 
         {/* Image Upload */}
         <div>
-          <label className=" text-sm font-medium flex items-center text-gray-700"><BiImageAdd /> Cover Image </label>
+          <label className=" text-sm font-medium flex items-center text-gray-700"> Cover Image </label>
           <input
             type="file"
             name="image"
